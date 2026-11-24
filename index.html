@@ -9,8 +9,19 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body class="is-loading">
-    <!-- Fixed WebGL stage: the dish lives here through the whole story -->
+    <!-- Photo cut-outs that sit behind the pasta spiral -->
+    <div class="photos photos--back" aria-hidden="true"></div>
+
+    <!-- Fixed WebGL stage: the 3D pasta spiral between the hero and the plate -->
     <canvas id="webgl" aria-hidden="true"></canvas>
+
+    <!-- Photo layer: hero forkful, floating ingredients, plated dish -->
+    <div class="photos photos--front" aria-hidden="true">
+      <img class="photo-hero" alt="" width="1600" height="1048" fetchpriority="high" />
+      <div class="photo-plate">
+        <img alt="" width="1200" height="1200" loading="eager" />
+      </div>
+    </div>
 
     <!-- Leader lines for the ingredient labels (drawn in JS) -->
     <svg id="leaders" aria-hidden="true"></svg>

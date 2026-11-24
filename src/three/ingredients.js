@@ -427,20 +427,20 @@ export function createIngredients() {
 
   const items = [];
   const named = {};
-  const add = (obj, keys, name) => {
-    items.push({ obj, keys, seed: Math.random() });
+  const add = (obj, keys, name, kind = name) => {
+    items.push({ obj, keys, seed: Math.random(), kind });
     if (name && !named[name]) named[name] = obj;
     return obj;
   };
 
-  SHRIMP.forEach((k, i) => add(createShrimp(shrimpMat), k, i === 1 ? 'shrimp' : null));
+  SHRIMP.forEach((k, i) => add(createShrimp(shrimpMat), k, i === 1 ? 'shrimp' : null, 'shrimp'));
   add(createLemon(), LEMON, 'lemon');
   CHILI.forEach((k) => add(createChili(redMat, stemMat), k, 'chili'));
   TOMATO.forEach((k) => add(createTomato(tomatoSkin, tomatoCut), k, 'tomato'));
   GARLIC.forEach((k) => add(createGarlic(garlicMat), k, 'garlic'));
   BASIL.forEach((k) => add(createBasil(basilMat), k, 'basil'));
   PARM.forEach((k) => add(createShaving(parmMat), k, 'parmesan'));
-  FLAKES.forEach((k) => add(createFlake(flakeMat), k));
+  FLAKES.forEach((k) => add(createFlake(flakeMat), k, null, 'flake'));
   const fork = add(createFork(), FORK, 'fork');
   const plate = add(createPlate(), PLATE, 'plate');
   items.find((it) => it.obj === fork).rigid = true;

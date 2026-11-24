@@ -1,8 +1,8 @@
 # Marino Cafe 3D
 
-A scroll-driven 3D landing page for Marino Cafe. A forkful of shrimp linguine
-unwinds into a spiral, its ingredients float out with labels, then everything
-settles onto a plate.
+A scroll-driven landing page for Marino Cafe. A real forkful of spaghetti
+dissolves into a 3D pasta spiral, photo cut-outs of the ingredients float around
+it with labels, then a plated shrimp pasta rises in.
 
 | Hero | Ingredient dance | The masterpiece |
 | --- | --- | --- |
@@ -11,10 +11,11 @@ settles onto a plate.
 ## Stack
 
 - [Vite](https://vite.dev) for dev server and build
-- [Three.js](https://threejs.org) for the dish. Everything is modelled in code
-  (no image or model assets): the pasta is ~170 GPU-animated strands that morph
-  between three shapes, and the prawns, lemon, chili, tomato, garlic, basil,
-  parmesan, fork and plate are procedural meshes with canvas textures.
+- [Three.js](https://threejs.org) for the pasta spiral: ~170 GPU-animated strands
+  that morph between three shapes. The procedural ingredient meshes are still in
+  the scene but hidden; they drive the choreography that the photo cut-outs follow.
+- Photo cut-outs (WebP with transparency, `src/assets/img/`) for the hero forkful,
+  the floating ingredients and the plated dish. See *Photos* below.
 - [GSAP](https://gsap.com) + ScrollTrigger for the load-in timeline and scroll progress
 - [Lenis](https://lenis.darkroom.engineering) for smooth scrolling
 - Fonts via Fontsource: Bodoni Moda (display), Jost (UI), Playfair Display italic (labels)
@@ -48,5 +49,26 @@ Files:
 - `src/three/ingredients.js`: procedural ingredients and their hero / spiral / plate poses
 - `src/three/scene.js`: renderer, lights, responsive layout and per-frame blending
 - `src/main.js`: intro timeline, scroll wiring, nav/title/label updates and leader lines
+
+- `updatePhotos()` in `src/main.js`: hero photo fade, 3D canvas crossfade, ingredient
+  cut-outs (projected from the hidden 3D ingredients via `scene.screenSprites()`, and
+  moved behind the canvas when they swing behind the spiral) and the plate rise.
+
+## Photos
+
+Free photos from [Pexels](https://www.pexels.com/license/), backgrounds removed with
+[rembg](https://github.com/danielgatis/rembg) (u2net / isnet-general-use):
+
+| File | Pexels photo |
+| --- | --- |
+| `hero-twirl.webp` | [Spaghetti on silver fork](https://www.pexels.com/photo/12039747/) |
+| `plate.webp` | [Pasta with mozzarella and shrimps](https://www.pexels.com/photo/7474118/) (circle crop) |
+| `prawns.webp` | [Peeled prawns](https://www.pexels.com/photo/10487767/) |
+| `lemon.webp` | [Sliced lemon on white](https://www.pexels.com/photo/1414110/) |
+| `chili.webp`, `chili-2.webp` | [Raw chili peppers](https://www.pexels.com/photo/7215171/) |
+| `basil.webp`, `basil-2.webp` | [Green leaves on white](https://www.pexels.com/photo/5498004/) |
+| `garlic.webp` | [Garlic and cloves](https://www.pexels.com/photo/4022126/) |
+| `parmesan.webp` | [Cheese beside a grater](https://www.pexels.com/photo/13656905/) |
+| `tomato.webp` | [Tomatoes on the vine](https://www.pexels.com/photo/28971157/) |
 
 `window.__marino.setProgress(0.42)` jumps to any point in the story, which is handy for screenshots.
