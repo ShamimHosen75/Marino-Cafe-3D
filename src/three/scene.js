@@ -169,7 +169,9 @@ export function createScene(canvas) {
 
       const s = lerp(lerp(keys.H[6], b[6], spreadT), keys.P[6], plateT);
       obj.scale.setScalar(Math.max(0.0001, s));
-      obj.visible = s > 0.001;
+      // Photo cut-outs (DOM) stand in for everything except the chili flakes.
+      obj.visible = s > 0.001 && it.kind === 'flake';
+      it.scale = s;
     }
 
     renderer.render(scene, camera);
@@ -186,5 +188,27 @@ export function createScene(canvas) {
     return out;
   }
 
-  return { update, resize, project };
+  /**
+   * Screen-space pose of every ingredient, for the photo cut-outs.
+   * px = CSS pixels per local unit of the ingredient (dish scale × item scale × perspective).
+   */
+  const sprites = ingredients.items.map((it) => ({ kind: it.kind, x: 0, y: 0, px: 0, rot: 0, front: true, seed: it.seed }));
+  const halfTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  function screenSprites() {
+    const dishZ = dish.getWorldPosition(tmpB).z;
+    ingredients.items.forEach((it, i) => {
+      const sp = sprites[i];
+      it.obj.getWorldPosition(tmpA);
+      const dist = camera.position.z - tmpA.z;
+      sp.front = tmpA.z >= dishZ;
+      sp.px = (dish.scale.x * (it.scale ?? 0) * window.innerHeight) / (2 * dist * halfTan);
+      tmpA.project(camera);
+      sp.x = (tmpA.x * 0.5 + 0.5) * window.innerWidth;
+      sp.y = (-tmpA.y * 0.5 + 0.5) * window.innerHeight;
+      sp.rot = it.obj.rotation.z + dish.rotation.z;
+    });
+    return sprites;
+  }
+
+  return { update, resize, project, screenSprites };
 }
