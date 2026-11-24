@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#a0411b" />
+    <title>Marino Cafe | Coastal Kitchen</title>
+    <meta name="description" content="Marino Cafe. Shrimp linguine tossed in garlic and chili, finished with Amalfi lemon." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="is-loading">
+    <!-- Fixed WebGL stage: the dish lives here through the whole story -->
+    <canvas id="webgl" aria-hidden="true"></canvas>
+
+    <!-- Leader lines for the ingredient labels (drawn in JS) -->
+    <svg id="leaders" aria-hidden="true"></svg>
+
+    <header class="nav" data-theme="dark">
+      <a class="logo" href="#top" aria-label="Marino Cafe home">
+        <span class="logo__word">MARINO</span>
+        <span class="logo__sub">coastal cafe</span>
+      </a>
+
+      <nav class="nav__center" aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="#top" class="is-active">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav__title" aria-hidden="true">
+          <span class="nav__title-main">The Ingredient Dance</span>
+          <span class="nav__title-num">03</span>
+          <span class="nav__title-sub">The Masterpiece</span>
+        </div>
+      </nav>
+
+      <div class="nav__right">
+        <a class="pill pill--book" href="#reserve">Book now
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </a>
+        <button class="search-btn" aria-label="Search">
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <div class="dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+
+    <main id="top">
+      <!-- One long scroll track with a sticky stage. Progress drives everything. -->
+      <section class="story" id="story">
+        <div class="stage">
+          <!-- 01 · Hero (rust panel slides away) -->
+          <div class="hero">
+            <div class="hero__rail" aria-hidden="true">
+              <span class="hero__rail-num">01</span>
+              <span class="hero__rail-line"></span>
+              <span class="hero__rail-label">Section 01</span>
+              <span class="hero__rail-line"></span>
+            </div>
+            <div class="hero__copy">
+              <p class="eyebrow" data-intro="eyebrow">The Twirl</p>
+              <h1 class="display hero__title">
+                <span class="line"><span>Love at</span></span>
+                <span class="line"><span>first</span></span>
+                <span class="line"><span>bite.</span></span>
+              </h1>
+              <p class="hero__lede" data-intro="fade">Tossed in garlic &amp; chili.<br />Finished with Amalfi lemon.</p>
+              <a class="pill pill--light" href="#menu" data-intro="fade">Explore the menu <span aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="pager" aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+          </div>
+
+          <!-- 02 · The ingredient dance -->
+          <div class="ballet">
+            <h2 class="display ballet__title">
+              <span class="line"><span>A little bit of</span></span>
+              <span class="line"><span>everything.</span></span>
+            </h2>
+            <ul class="labels">
+              <li class="label" data-side="left" data-target="basil" style="--x: 21%; --y: 41%">Sweet basil</li>
+              <li class="label" data-side="left" data-target="garlic" style="--x: 25%; --y: 59%">Garlic confit</li>
+              <li class="label" data-side="left" data-target="linguine" style="--x: 26%; --y: 76%">Linguine</li>
+              <li class="label" data-side="right" data-target="lemon" style="--x: 67%; --y: 16%">Amalfi lemon</li>
+              <li class="label" data-side="right" data-target="parmesan" style="--x: 70%; --y: 30%">Aged parmesan</li>
+              <li class="label" data-side="right" data-target="chili" style="--x: 73%; --y: 47%">Calabrian chili</li>
+              <li class="label" data-side="right" data-target="shrimp" style="--x: 74%; --y: 63%">Tiger prawns</li>
+            </ul>
+          </div>
+
+          <!-- 03 · The masterpiece -->
+          <div class="finale" id="reserve">
+            <h2 class="display finale__title">
+              <span class="line"><span>Your table is waiting.</span></span>
+            </h2>
+            <a class="pill pill--outline finale__cta" href="#contact">Reserve a table</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
